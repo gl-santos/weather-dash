@@ -39,9 +39,9 @@ function App() {
         forecasts.push({
           key: j,
           date: formatDate(new Date(dayData.dt * 1000)),
-          temp: `${Math.round(dayData.main.temp)} °C`,
+          temp: `${Math.round(dayData.main.temp)}°C`,
           desc: capitalizeEachWord(dayData.weather[0].description),
-          icon: `https://openweathermap.org/img/wn/${dayData.weather[0].icon}.png`
+          icon: `https://openweathermap.org/img/wn/${dayData.weather[0].icon}@2x.png`
         });
       }
     }
@@ -95,53 +95,53 @@ function App() {
   };
 
   return (
-<div className="flex">
-  <div className="mx-auto">
-
-    <div className="max-h-screen bg-white py-8 px-4">
-      <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl p-6">
-        <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Weather Finder</h1>
-        <div className="flex mb-4">
-          <input 
-            type="text"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            placeholder="What city do you want to search?"
-            className="flex-1 border border-gray-300 p-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
-            onKeyDown={(e) => e.key === 'Enter' && fetchCity()}
-          />
-          <button
-             onClick={fetchCity}
-             className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-r-lg font-semibold transition-colors"
-          >
-            Search
-          </button>
-        </div>
-      </div>
-    </div>
-
-    {weather && weather.length > 0 && (
-      <div className=" mx-auto text-center bg-white rounded-lg shadow-xl mb-6 p-4">
-         <span className="text-2xl  rounded-lg border-l-4 border-blue-500">{`Forecast for ${city} - ${country}`}</span>
-      </div>
-    )}
-
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
-      {weather.map(forecast => (
-        <div key={forecast.key} data-slot="card" className="bg-card text-card-foreground flex flex-col rounded-xl border shadow-xl gap-0 p-6 text-left">
-          <div className="flex space-x-4">
-            <p className="text-left"><img src={forecast.icon} alt={forecast.desc}/></p>
-            <p className="text-2xl text-right">{forecast.temp}</p>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4">
+      <div className="w-full max-w-6xl">
+        {/* Search Header */}
+        <div className="max-w-md mx-auto bg-white rounded-lg shadow-xl p-6 mb-6">
+          <h1 className="text-3xl font-bold text-center mb-6 text-gray-800">Weather Finder</h1>
+          <div className="flex mb-4">
+            <input 
+              type="text"
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              placeholder="What city do you want to search?"
+              className="flex-1 border border-gray-300 p-3 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              onKeyDown={(e) => e.key === 'Enter' && fetchCity()}
+            />
+            <button
+              onClick={fetchCity}
+              className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-r-lg font-semibold transition-colors whitespace-nowrap"
+            >
+              Search
+            </button>
           </div>
-          <p className="text-center">{forecast.desc}</p>
-          <p className="text-center">{forecast.date}</p>
         </div>
-      ))}
+
+        {/* City Header */}
+        {weather && weather.length > 0 && (
+          <div className="mx-auto text-center bg-white rounded-lg shadow-md mb-6 p-4 pl-6">
+            <span className="text-2xl font-semibold text-gray-800">{`Forecast for ${city}, ${country}`}</span>
+          </div>
+        )}
+
+        {/* Forecast Grid */}
+        {loading && <div className="text-center py-8">Loading forecast...</div>}
+        {error && <div className="text-center py-8 text-red-500">Error: {error}</div>}
+        {!loading && !error && weather.length === 0 && <div className="text-center py-8 text-gray-500">Enter a city to get started!</div>}
+        
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-5">
+          {weather.map(forecast => (
+            <div key={forecast.key} className="bg-white rounded-xl border shadow-md p-6 text-center flex flex-col items-center space-y-2">
+              <img src={forecast.icon} alt={forecast.desc} className="w-16 h-16" />
+              <p className="text-2xl font-bold text-gray-800">{forecast.temp}</p>
+              <p className="text-gray-600 capitalize">{forecast.desc}</p>
+              <p className="text-sm text-gray-500">{forecast.date}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
-
-  </div>
-</div>
-
   );
 }
 
