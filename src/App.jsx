@@ -48,7 +48,7 @@ function App() {
     setWeather(forecasts);
   };
 
-  function formatDate(date) {
+  const formatDate = date => {
     const weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const oneDayInMilliseconds = 86400000;
     const currentDate = new Date()
@@ -71,7 +71,7 @@ function App() {
     return formattedDate;
   }
 
-  function capitalizeEachWord(sentence) {
+  const capitalizeEachWord = sentence => {
     if (typeof sentence !== 'string' || sentence === null || sentence.trim() === '') {
       return '';
     }
