@@ -1,7 +1,7 @@
 <img width="1023" height="516" alt="image" src="https://github.com/user-attachments/assets/861837be-17ed-4137-9d2b-4194c55eb0de" />
 Built as React crash course.
 
-Click the link below to see it running!
+Click the link to see it running!
 https://weather-dash-one.vercel.app/
 
 # React + Vite
