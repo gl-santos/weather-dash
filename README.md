@@ -1,4 +1,5 @@
-<img width="1269" height="655" alt="image" src="https://github.com/user-attachments/assets/beac4c4d-7db1-409a-86ef-f220b7fea6b4" />
+<img width="1237" height="594" alt="image" src="https://github.com/user-attachments/assets/3370736e-6d28-4f4a-9ee0-d8b4afd4a34f" />
+
 
 Built as React crash course.
 
